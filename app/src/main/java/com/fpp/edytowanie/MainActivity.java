@@ -14,11 +14,16 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
     Button button;
+    SeekBar rotate;
+    TextView textview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageview);
         button = findViewById(R.id.button);
+        rotate = findViewById(R.id.rot);
+        textview = findViewById(R.id. textView);
 
 
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
@@ -40,6 +47,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        rotate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                textview.setText("Rotacja " + String.valueOf(progress));
+                imageView.setRotation(imageView.getRotation() + 1);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
