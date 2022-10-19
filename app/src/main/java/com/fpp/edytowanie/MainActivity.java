@@ -42,14 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
-        setRotate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int x = Integer.parseInt(rotateText.getText().toString());
-                imgView.setRotation(x);
-            }
-        });
-
     }
 
     @Override
