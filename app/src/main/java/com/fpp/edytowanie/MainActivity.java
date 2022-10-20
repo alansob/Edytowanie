@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     SeekBar rotate;
     TextView textview;
+    Button red;
+    Button blue;
+    Button green;
+    SeekBar trans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         rotate = findViewById(R.id.rot);
         textview = findViewById(R.id. textView);
+        red = findViewById(R.id.red);
+        blue = findViewById(R.id.blue);
+        green = findViewById(R.id.green);
+        trans = findViewById(R.id.trans);
 
 
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
@@ -55,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 textview.setText("Rotacja " + String.valueOf(progress));
-                imageView.setRotation(imageView.getRotation() + 1);
+                imageView.setRotation(imageView.getRotation() + 3);
             }
 
             @Override
@@ -66,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        trans
+
+        red.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.setBackgroundColor(Color.parseColor("#80000000"));
+                imageView.setColorFilter(Color.RED);
             }
         });
     }
